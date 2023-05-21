@@ -6,6 +6,7 @@ import br.com.audsat.carinsurancequotes.domains.dto.InsuranceCreationResponseDTO
 import br.com.audsat.carinsurancequotes.domains.dto.InsuranceQueryResponseDTO;
 import br.com.audsat.carinsurancequotes.services.insurance.InsuranceCreationService;
 import br.com.audsat.carinsurancequotes.services.insurance.InsuranceQueriesService;
+import br.com.audsat.carinsurancequotes.services.insurance.InsuranceStatusUpdaterService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ public class InsuranceBudgetControllerImpl implements InsuranceBudgetController 
 
     private final InsuranceCreationService insuranceCreationService;
     private final InsuranceQueriesService insuranceQueriesService;
+    private final InsuranceStatusUpdaterService insuranceStatusUpdaterService;
 
     @Override
     @PostMapping
@@ -31,6 +33,14 @@ public class InsuranceBudgetControllerImpl implements InsuranceBudgetController 
     @GetMapping("/{insurance-id}")
     public ResponseEntity<InsuranceQueryResponseDTO> findInsuranceById(@PathVariable("insurance-id") final Long id) {
         return ResponseEntity.ok(insuranceQueriesService.findInsuranceById(id));
+    }
+
+    @Override
+    @PatchMapping("/{insurance-id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateInsuranceStatusById(@PathVariable("insurance-id") final Long id,
+                                          @RequestParam("active") final Boolean active) {
+        insuranceStatusUpdaterService.updateInsuranceStatusById(id, active);
     }
 
 }

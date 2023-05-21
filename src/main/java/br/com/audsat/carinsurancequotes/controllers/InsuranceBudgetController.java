@@ -9,4 +9,6 @@ public interface InsuranceBudgetController {
     ResponseEntity<InsuranceCreationResponseDTO> createInsurance(final InsuranceCreationRequestDTO insuranceCreationRequestDTO);
 
     ResponseEntity<InsuranceQueryResponseDTO> findInsuranceById(final Long id);
+
+    void updateInsuranceStatusById(final Long id, final Boolean active);
 }
