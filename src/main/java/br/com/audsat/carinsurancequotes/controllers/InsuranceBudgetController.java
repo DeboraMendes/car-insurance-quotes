@@ -11,4 +11,6 @@ public interface InsuranceBudgetController {
     ResponseEntity<InsuranceQueryResponseDTO> findInsuranceById(final Long id);
 
     void updateInsuranceStatusById(final Long id, final Boolean active);
+
+    void deleteInsuranceById(final Long id);
 }
