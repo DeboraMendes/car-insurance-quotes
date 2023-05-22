@@ -49,3 +49,11 @@ A arquitetura da aplicação e do banco de dados podem ser consultados em:
 ```shell
 cd car-insurance-quotes\src\main\resources\architectural\diagram
 ```
+
+O arquivo `car-insurance-quotes.pdf` contém os seguintes diagramas arquiteturais:
+
+1. Cadastro de orçamento
+2. Consulta de orçamento
+3. Atualização de orçamento
+4. Remoção de orçamento
+5. Modelagem da Aplicação
