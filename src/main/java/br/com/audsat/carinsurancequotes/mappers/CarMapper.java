@@ -1,10 +1,10 @@
-package br.com.audsat.carinsurancequotes.adapters;
+package br.com.audsat.carinsurancequotes.mappers;
 
 import br.com.audsat.carinsurancequotes.domains.dto.CarDTO;
 import br.com.audsat.carinsurancequotes.domains.entities.CarEntity;
 
-public interface CarDTOAdapter {
-    static CarDTO build(final CarEntity carEntity) {
+public interface CarMapper {
+    static CarDTO toDto(final CarEntity carEntity) {
         return CarDTO.builder()
                 .id(carEntity.getId())
                 .model(carEntity.getModel())

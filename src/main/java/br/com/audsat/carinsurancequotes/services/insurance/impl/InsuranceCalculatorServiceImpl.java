@@ -1,6 +1,6 @@
 package br.com.audsat.carinsurancequotes.services.insurance.impl;
 
-import br.com.audsat.carinsurancequotes.adapters.InsuranceCalculatorAdapter;
+import br.com.audsat.carinsurancequotes.builders.InsuranceCalculatorBuilder;
 import br.com.audsat.carinsurancequotes.configurations.business.InsuranceRiskCalculatorConfiguration;
 import br.com.audsat.carinsurancequotes.domains.entities.CarEntity;
 import br.com.audsat.carinsurancequotes.domains.entities.DriverEntity;
@@ -38,7 +38,7 @@ public class InsuranceCalculatorServiceImpl implements InsuranceCalculatorServic
         final DriverEntity driverEntity = driverQueriesService
                 .findDriverByCustomerId(insuranceEntity.getCustomer().getId());
 
-        final InsuranceRiskCalculator insuranceRiskCalculator = InsuranceCalculatorAdapter
+        final InsuranceRiskCalculator insuranceRiskCalculator = InsuranceCalculatorBuilder
                 .build(insuranceRiskCalculatorConfiguration, mainDriverEntity, driverEntity, carEntity);
 
         final BigDecimal riskPercentage = insuranceRiskPercentageCalculatorServices.stream()

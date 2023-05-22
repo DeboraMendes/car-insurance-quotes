@@ -1,11 +1,11 @@
-package br.com.audsat.carinsurancequotes.adapters;
+package br.com.audsat.carinsurancequotes.mappers;
 
 import br.com.audsat.carinsurancequotes.domains.dto.DriverDTO;
 import br.com.audsat.carinsurancequotes.domains.pojo.IDriverEntity;
 import br.com.audsat.carinsurancequotes.utils.LocalDateUtil;
 
-public interface DriverDTOAdapter {
-    static DriverDTO build(final IDriverEntity driverEntity) {
+public interface DriverMapper {
+    static DriverDTO toDto(final IDriverEntity driverEntity) {
         return DriverDTO.builder()
                 .id(driverEntity.getId())
                 .document(driverEntity.getDocument())

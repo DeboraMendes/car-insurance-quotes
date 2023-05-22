@@ -1,9 +1,5 @@
 package br.com.audsat.carinsurancequotes.services.insurance.impl;
 
-import br.com.audsat.carinsurancequotes.adapters.CarDTOAdapter;
-import br.com.audsat.carinsurancequotes.adapters.CustomerDTOAdapter;
-import br.com.audsat.carinsurancequotes.adapters.DriverDTOAdapter;
-import br.com.audsat.carinsurancequotes.adapters.InsuranceQueryResponseDTOAdapter;
 import br.com.audsat.carinsurancequotes.domains.dto.CarDTO;
 import br.com.audsat.carinsurancequotes.domains.dto.CustomerDTO;
 import br.com.audsat.carinsurancequotes.domains.dto.DriverDTO;
@@ -12,6 +8,10 @@ import br.com.audsat.carinsurancequotes.domains.entities.CarEntity;
 import br.com.audsat.carinsurancequotes.domains.entities.CustomerEntity;
 import br.com.audsat.carinsurancequotes.domains.entities.InsuranceEntity;
 import br.com.audsat.carinsurancequotes.exceptions.ResourceNotFoundException;
+import br.com.audsat.carinsurancequotes.mappers.CarMapper;
+import br.com.audsat.carinsurancequotes.mappers.CustomerMapper;
+import br.com.audsat.carinsurancequotes.mappers.DriverMapper;
+import br.com.audsat.carinsurancequotes.mappers.InsuranceMapper;
 import br.com.audsat.carinsurancequotes.repositories.InsuranceRepository;
 import br.com.audsat.carinsurancequotes.services.car.CarQueriesService;
 import br.com.audsat.carinsurancequotes.services.claim.ClaimQueriesService;
@@ -44,15 +44,15 @@ public class InsuranceQueriesServiceImpl implements InsuranceQueriesService {
                 .orElseThrow(() -> new ResourceNotFoundException("Insurance not found."));
 
         final CustomerEntity customerEntity = customerQueriesService.findCustomerById(insuranceEntity.getCustomer().getId());
-        final CustomerDTO customerDTO = CustomerDTOAdapter.build(customerEntity);
+        final CustomerDTO customerDTO = CustomerMapper.toDto(customerEntity);
 
         final CarEntity carEntity = carQueriesService.findCarById(insuranceEntity.getCar().getId());
-        final CarDTO carDTO = CarDTOAdapter.build(carEntity);
+        final CarDTO carDTO = CarMapper.toDto(carEntity);
 
         final Set<DriverDTO> driversDTO = driverQueriesService
                 .findDriversByCarId(carEntity.getId())
                 .stream()
-                .map(DriverDTOAdapter::build)
+                .map(DriverMapper::toDto)
                 .collect(Collectors.toSet());
         carDTO.setDrivers(driversDTO);
 
@@ -67,6 +67,6 @@ public class InsuranceQueriesServiceImpl implements InsuranceQueriesService {
 
         log.info("Insurance found");
 
-        return InsuranceQueryResponseDTOAdapter.build(insuranceEntity, customerDTO, carDTO);
+        return InsuranceMapper.toDto(insuranceEntity, customerDTO, carDTO);
     }
 }

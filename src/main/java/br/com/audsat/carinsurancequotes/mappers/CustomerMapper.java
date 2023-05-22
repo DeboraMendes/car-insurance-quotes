@@ -1,10 +1,10 @@
-package br.com.audsat.carinsurancequotes.adapters;
+package br.com.audsat.carinsurancequotes.mappers;
 
 import br.com.audsat.carinsurancequotes.domains.dto.CustomerDTO;
 import br.com.audsat.carinsurancequotes.domains.entities.CustomerEntity;
 
-public interface CustomerDTOAdapter {
-    static CustomerDTO build(final CustomerEntity customerEntity) {
+public interface CustomerMapper {
+    static CustomerDTO toDto(final CustomerEntity customerEntity) {
         return CustomerDTO.builder()
                 .id(customerEntity.getId())
                 .name(customerEntity.getName())

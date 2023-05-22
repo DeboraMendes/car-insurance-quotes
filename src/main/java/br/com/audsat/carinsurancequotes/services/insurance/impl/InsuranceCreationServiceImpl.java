@@ -1,12 +1,12 @@
 package br.com.audsat.carinsurancequotes.services.insurance.impl;
 
-import br.com.audsat.carinsurancequotes.adapters.InsuranceCreationResponseDTOAdapter;
 import br.com.audsat.carinsurancequotes.builders.InsuranceEntityBuilder;
 import br.com.audsat.carinsurancequotes.domains.dto.InsuranceCreationRequestDTO;
 import br.com.audsat.carinsurancequotes.domains.dto.InsuranceCreationResponseDTO;
 import br.com.audsat.carinsurancequotes.domains.entities.CarEntity;
 import br.com.audsat.carinsurancequotes.domains.entities.CustomerEntity;
 import br.com.audsat.carinsurancequotes.domains.entities.InsuranceEntity;
+import br.com.audsat.carinsurancequotes.mappers.InsuranceMapper;
 import br.com.audsat.carinsurancequotes.repositories.InsuranceRepository;
 import br.com.audsat.carinsurancequotes.services.car.CarQueriesService;
 import br.com.audsat.carinsurancequotes.services.customer.CustomerQueriesService;
@@ -48,6 +48,6 @@ public class InsuranceCreationServiceImpl implements InsuranceCreationService {
 
         log.info("Created insurance");
 
-        return InsuranceCreationResponseDTOAdapter.build(insuranceEntity);
+        return InsuranceMapper.toDto(insuranceEntity);
     }
 }
