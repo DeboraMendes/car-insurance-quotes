@@ -1,0 +1,39 @@
+server:
+  host: localhost
+  port: 8080
+  base-url: http://${server.host}:${server.port}
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:audsat
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: none
+    properties.hibernate.default_schema: car_insurance_quotes
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+insurance-risk:
+  base: 6
+  increment: 2
+  min-age: 18
+  max-age: 25
+
+open-api:
+  server:
+    url: ${server.base-url}
+    description:
+  contact:
+    email: contato@audsat.com.br
+    name: Audsat
+    url: https://audsat.com.br/pt
+  info:
+    title: Car Insurance Quote API
+    version: 1.0.0
+    description: This API exposes endpoints to car insurance quote.
