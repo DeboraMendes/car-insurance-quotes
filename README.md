@@ -6,6 +6,10 @@ Aplicação responsável por orçamentos de seguro de carros.
 ---
 ## Technical test
 
+### Prazo
+
+O prazo de devolução é de 3 dias corridos, ou seja, até o dia 22/05/2023 (segunda-feira).
+
 ### Pontos de Avaliação
 
 1. Desenvolvimento Java e uso de suas bibliotecas
